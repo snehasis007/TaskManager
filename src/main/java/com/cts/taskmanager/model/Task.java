@@ -9,7 +9,7 @@ public class Task extends TaskBase{
 	@Id
     private String id;
 	private ParentTask pTask;
-	@JsonProperty("taskName")
+	@JsonProperty("task")
 	private String task;
 	@JsonProperty("startDate")
 	private String startDate;
@@ -17,10 +17,10 @@ public class Task extends TaskBase{
 	private String endDate;
 	@JsonProperty("priority")
 	private Integer priority;
-	public Task(String taskname,String startdate,String enddate,Integer priority) {
-		this.task=taskname;
-		this.startDate=startdate;
-		this.endDate=enddate;
+	public Task(String task,String startDate,String endDate,Integer priority) {
+		this.task=task;
+		this.startDate=startDate;
+		this.endDate=endDate;
 		this.priority=priority;
 	}
 	public String getId() {

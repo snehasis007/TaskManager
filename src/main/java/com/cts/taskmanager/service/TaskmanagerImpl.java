@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.cts.taskmanager.exception.TaskmanagerException;
 import com.cts.taskmanager.model.Task;
 import com.cts.taskmanager.repository.TaskRepository;
-
+@Service
 public class TaskmanagerImpl implements ITaskmanager{
 
 	
