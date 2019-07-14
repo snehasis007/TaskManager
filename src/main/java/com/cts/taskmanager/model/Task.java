@@ -17,6 +17,7 @@ public class Task extends TaskBase{
 	private String endDate;
 	@JsonProperty("priority")
 	private Integer priority;
+	private String isTaskCompleted;
 	public Task(String task,String startDate,String endDate,Integer priority) {
 		this.task=task;
 		this.startDate=startDate;
@@ -58,6 +59,12 @@ public class Task extends TaskBase{
 	}
 	public void setPriority(Integer priority) {
 		this.priority = priority;
+	}
+	public String getIsTaskCompleted() {
+		return isTaskCompleted;
+	}
+	public void setIsTaskCompleted(String isTaskCompleted) {
+		this.isTaskCompleted = isTaskCompleted;
 	}
 	
 	

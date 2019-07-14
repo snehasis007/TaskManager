@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cts.taskmanager.exception.TaskmanagerException;
+import com.cts.taskmanager.model.ParentTask;
 import com.cts.taskmanager.model.ServiceResult;
 import com.cts.taskmanager.model.Task;
 import com.cts.taskmanager.repository.TaskRepository;
@@ -24,7 +25,7 @@ import com.cts.taskmanager.service.ITaskmanager;
 
 
 @RestController
-@RequestMapping(value = "taskmanager/services/taskservice")
+@RequestMapping(value = "services/taskservice")
 public class TaskController {
 	private static final Logger logger = LoggerFactory.getLogger(TaskController.class);
 	private ITaskmanager manager;
@@ -34,7 +35,7 @@ public class TaskController {
 	}
 	@RequestMapping(value = "ping", method = RequestMethod.GET)
 	public String ping(){
-		 return "ProjectManeger Service Working";
+		 return "Hi! \n #######TaskManeger Service Working##########";
 	}
 	@RequestMapping(value = "taskbyname/{taskName}", method = RequestMethod.GET)
 	public ResponseEntity<ServiceResult<Task>> getTaskByName(@PathVariable String taskName) {
@@ -56,6 +57,20 @@ public class TaskController {
 		ServiceResult<Task> result=new ServiceResult<Task>();
 		try {
 			List<Task> tasks=manager.getAllTasks();
+			result.setDataList(tasks);
+			result.setSuccess(true);
+		}catch(TaskmanagerException e) {
+			result.setSuccess(false);
+			result.setError(e.getError());
+		}
+		return ResponseEntity.status(HttpStatus.OK).body(result);
+	}
+	@RequestMapping(value = "getallparenttasks", method = RequestMethod.GET)
+	public ResponseEntity<ServiceResult<ParentTask>> getAllParentTasks(){
+		logger.info("inside getTaskByName");
+		ServiceResult<ParentTask> result=new ServiceResult<ParentTask>();
+		try {
+			List<ParentTask> tasks=manager.getAllParentTasks();
 			result.setDataList(tasks);
 			result.setSuccess(true);
 		}catch(TaskmanagerException e) {
